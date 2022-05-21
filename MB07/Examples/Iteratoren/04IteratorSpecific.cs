@@ -12,6 +12,13 @@ namespace Iteratoren.Specific {
             }
         }
 
+        public void TestEnumerator() {
+            MyIntList list = new MyIntList();
+            foreach (int elem in list.TestIteratorMethod()) {
+                Console.WriteLine(elem);
+            }
+
+        }
         public void TestSpecificMethod() {
             MyIntList list = new MyIntList();
             foreach (int elem in list.Range(2, 7)) {
@@ -27,6 +34,17 @@ namespace Iteratoren.Specific {
         }
     }
 
+    public class TestEnumerator {
+        // beliebige Klasse mit einer Methode, die GetEnumerator() heisst.
+        // Diese Methode wiederum muss in Objekt zurückgeben,
+        // welches Current und MoveNext() hat.
+        public IEnumerator<int> GetEnumerator() {
+            yield return 1;
+            yield return 3;
+            yield return 6;
+        }
+
+    }
     class MyIntList {
         private int[] data = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
@@ -36,6 +54,12 @@ namespace Iteratoren.Specific {
                 yield return data[i];
         }
 
+        public TestEnumerator TestIteratorMethod() {
+            // beliebiges Objekt, welches GetEnumerator() als Methode hat.
+            // Diese Methode wiederum muss in Objekt zurückgeben,
+            // welches Current und MoveNext() hat.
+            return new TestEnumerator();
+        }
         // Spezifische Iterator-Methode
         public IEnumerable<int> Range(int from, int to) {
             for (int i = from; i < to; i++)
