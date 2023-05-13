@@ -39,8 +39,6 @@ void SimpleExample() {
 
 void FirstSample()
 {
-    Console.WriteLine("Hello, World!");
-
     BagOfFruits fruits = new BagOfApples();
     fruits.Add(new Apple { Name = "Granny Smith", Weight = 80, ForEating = true });
     fruits.Add(new Banana { Name = "Blue Java", Weight = 60});
