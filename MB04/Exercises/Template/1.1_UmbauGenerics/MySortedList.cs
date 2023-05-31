@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace _1._1_UmbauGenerics {
-    public class MySortedList : MyList {
+    public class MySortedList<T> : MyList<T> {
         /// <summary>
         /// A simple, unoptimized sort algorithm that orders list elements from lowest to highest.
         /// </summary>
@@ -16,7 +16,7 @@ namespace _1._1_UmbauGenerics {
                 Node curr = head;
                 swapped = false;
                 while (curr.next != null) {
-                    IComparable comp = curr.Data as IComparable;
+                    IComparable<T> comp = curr.Data as IComparable<T>;
                     if (comp == null) {
                         throw new Exception("data-object must implement ICOmparable");
                     }
