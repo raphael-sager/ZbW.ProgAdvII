@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using _6_ExtensionMethodsSimple;
 
 namespace _6_QueryOperators {
     class Program {
@@ -11,8 +13,8 @@ namespace _6_QueryOperators {
 
             // Operator 'ZbwMultipleOf' / Vielfaches von 4 auf 'numbers'
             Console.WriteLine("---------- \r\nOperator 'ZbwMultipleOf' / Vielfaches von 4 auf 'numbers'");
-            //IEnumerable<int> multiple4 = numbers.ZbwMultipleOf(4);
-            //foreach (int i in multiple4) { Console.WriteLine(i); }
+            IEnumerable<int> multiple4 = numbers.ZbwMultipleOf(4);
+            foreach (int i in multiple4) { Console.WriteLine(i); }
 
             // Operator 'ZbwMultipleOf' / Vielfaches von 2 und 3 auf 'numbers'
             Console.WriteLine("---------- \r\nOperator 'ZbwMultipleOf' / Vielfaches von 2 und 3 auf 'numbers'");
@@ -23,8 +25,8 @@ namespace _6_QueryOperators {
 
             // Operator 'ZbwWhere' / Städtenamen mit 'B' auf 'cities'
             Console.WriteLine("---------- \r\nOperator 'ZbwWhere' / Städtenamen mit 'B' auf 'cities'");
-            //IEnumerable<string> citiesB = cities.ZbwWhere(delegate(string s) { return s.StartsWith("B"); });
-            //foreach (string s in citiesB) { Console.WriteLine(s); }
+            IEnumerable<string> citiesB = cities.ZbwWhere(delegate (string s) { return s.StartsWith("B"); });
+            foreach (string s in citiesB) { Console.WriteLine(s); }
 
             // Operator 'ZbwWhere' / Städtenamen mit 'e' im Namen und Länge >= 5 auf 'cities'
             Console.WriteLine("---------- \r\nOperator 'ZbwWhere' / Städtenamen mit 'e' im Namen und Länge >= 5 auf 'cities'");

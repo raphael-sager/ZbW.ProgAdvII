@@ -19,18 +19,18 @@ namespace _4_5_ExtensionMethodsSimple {
             };
 
             // TODO: Bringe folgenden Code zum laufen
-            //foreach (string s in identifiers)
-            //    Console.WriteLine("{0} becomes: {1}", s, Extensions.CamelCase(s));
-            //foreach (string s in identifiers)
-            //    Console.WriteLine("{0} becomes: {1}", s, s.CamelCase());
+            foreach (string s in identifiers)
+                Console.WriteLine("{0} becomes: {1}", s, Extensions.CamelCase(s));
+            foreach (string s in identifiers)
+                Console.WriteLine("{0} becomes: {1}", s, s.CamelCase());
         }
 
         private static void TestToStringSafe() {
             // TODO: Bringe folgenden Code zum laufen
-            //var a = "string abc";
-            //Console.WriteLine(a.ToStringSafe()); // Resultat a.ToString()
-            //a = null;
-            //Console.WriteLine(a.ToStringSafe()); // Resultat "null"
+            var a = "string abc";
+            Console.WriteLine(a.ToStringSafe()); // Resultat a.ToString()
+            a = null;
+            Console.WriteLine(a.ToStringSafe()); // Resultat "null"
         }
     }
 }
