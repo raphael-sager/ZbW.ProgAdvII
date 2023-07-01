@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 
 namespace _1._3_QueryExpressions {
     static class Program {
@@ -38,31 +40,75 @@ namespace _1._3_QueryExpressions {
             // ------------------------------------------------------------------------------------------- //
             // TODO: Liste der Mitarbeiter die im State WA wohnen. 
 
-            //var queryWashington = ;
-
+            // query syntax
+            var queryWashington = from e in employees
+                                  where e.State == "WA" select e;
+            // extension Method
+            var queryWashingtonTwo = employees.Where(e => e.State == "WA");
 
             Console.WriteLine("---------- \r\nListe der Mitarbeiter die im State WA wohnen");
-            //queryWashington.ForEach(e => Console.WriteLine(e.Name));
+            queryWashington.ForEach(e => Console.WriteLine(e.Name));
+
+
+
+
 
 
             // ------------------------------------------------------------------------------------------- //
             // TODO: Liste der Namen und Adressen der Mitarbeiter im State WA. Sortiert nach Name absteigend. 
 
-            //var queryWashingtonSorted = ;
+            // query syntax
+            var queryWashingtonSorted = from e in employees
+                                        where e.State == "WA" 
+                                        orderby e.Name descending 
+                                        select e ;
+
+            // extension Method
+            var queryWashingtonSortedTwo = employees
+                .Where(e => e.State == "WA")
+                .OrderByDescending(e => e.Name);
 
 
             Console.WriteLine("---------- \r\nListe der Namen und Adressen der Mitarbeiter im State WA");
-            //queryWashingtonSorted.ForEach(e => Console.WriteLine("Name: {0}, Phone: {1}", e.Name, e.Address));
+            queryWashingtonSorted.ForEach(e => Console.WriteLine("Name: {0}, Phone: {1}", e.Name, e.Address));
+
+            
+
+
 
 
             // ------------------------------------------------------------------------------------------- //
             // TODO: Liste der Department-Namen und der Anzahl Mitarbeiter der Departments.  
 
-            //var queryDepartments = ;
+            // query syntax
+            var queryDepartments = from d in departments
+                join e in employees on d.Id equals e.DepId
+                group d by d.Name into g
+                select new
+                {
+                    Department = g.Key,
+                    EmployeeCount = g.Count()
+                };
+
+            // extension method
+            var queryDepartmentsExtension = departments
+                .Join(employees, department => department.Id, employee => employee.DepId, (department, employee) => new {
+                    Department = department,
+                    Employee = employee
+                })
+                .GroupBy(g => g.Department.Name)
+                .Select(g => new { Department = g.Key, EmployeeCount = g.Count() });
 
 
             Console.WriteLine("---------- \r\nListe der Department-Namen und der Anzahl Mitarbeiter der Departments");
-            //queryDepartments.ForEach(d => Console.WriteLine("Department: {0}, EmployeeCount: {1}", d.Department, d.EmployeeCount));
+            queryDepartmentsExtension.ForEach(d => Console.WriteLine("Department: {0}, EmployeeCount: {1}", d.Department, d.EmployeeCount));
+
+
+
+
+
+
+
 
 
             // ------------------------------------------------------------------------------------------- //
@@ -70,11 +116,34 @@ namespace _1._3_QueryExpressions {
             // Ausgabe: Name des Departments, Name des Mitarbeiters
             // Sortiert nach Departmentname 
 
-            //var empQuery = ;
+            //query Syntax
+            //var empQuery = from d in departments
+            //               join e in employees on d.Id equals e.DepId
+            //               orderby d.Name
+            //               select new
+            //               {
+            //                   EmployeeName = e.Name,
+            //                   DepartmentName = d.Name
+            //               };
+
+
+            // extension Method
+            var empQuery = employees
+                .Join(departments, eKey => eKey.DepId, dKey => dKey.Id, (e, d) => new
+                {
+                    EmployeeName = e.Name,
+                    DepartmentName = d.Name
+                })
+                .OrderBy(d => d.DepartmentName);
 
 
             Console.WriteLine("---------- \r\nListe der Departments mit ihren Mitarbeitern");
-            //empQuery.ForEach(c => Console.WriteLine("Name: {0}, Department: {1}", c.EmployeeName, c.DepartmentName));
+            empQuery.ForEach(c => Console.WriteLine("Name: {0}, Department: {1}", c.EmployeeName, c.DepartmentName));
+
+
+
+
+
 
             // ------------------------------------------------------------------------------------------- //
             // TODO: Liste der Departments mit dem Salär des bestverdienenden Mitarbeiters. 
@@ -82,11 +151,35 @@ namespace _1._3_QueryExpressions {
             // Sortiert nach höchstem Salär, absteigend 
             // Tipp: Verwenden Sie die „let“ Klausel für das Speichern von Zwischenresultaten.
 
-            //var maxDeptSalary = ;
+
+            // query Syntax
+            //var maxDeptSalary = from d in departments
+            //        join e in employees on d.Id equals e.DepId
+            //        group e by d.Name into g
+            //        let maxSalary = g.Max(em => em.Salary)
+            //        orderby maxSalary descending 
+            //            select new
+            //            {
+            //                DepartmentName = g.Key,
+            //                MaxSalary = maxSalary
+            //            };
+
+            // extension Method
+            var maxDeptSalary = departments
+                .GroupJoin(employees, dKey => dKey.Id, eKey => eKey.DepId, (d, e) => new
+                {
+                    DepartmentName = d.Name,
+                    MaxSalary = e.Max(es => es.Salary)
+                })
+                .OrderByDescending(ms => ms.MaxSalary);
 
 
             Console.WriteLine("---------- \r\nListe der Departments mit dem Salär des bestverdienenden Mitarbeiters");
-            //maxDeptSalary.ForEach(c => Console.WriteLine("Department: {0}, Höchster Salär: {1}", c.DepartmentName, c.MaxSalary));
+            maxDeptSalary.ForEach(c => Console.WriteLine("Department: {0}, Höchster Salär: {1}", c.DepartmentName, c.MaxSalary));
+
+
+
+
 
 
             // ------------------------------------------------------------------------------------------- //
@@ -94,11 +187,26 @@ namespace _1._3_QueryExpressions {
             // Ausgabe: Name des Projektes, Name des Mitarbeiters
             // Sortiert nach Name des Projektes, Name des Mitarbeiters 
 
-            // var projList = 
+            //query syntax
+            //var projList = from p in projects
+            //    from e in employees
+            //    orderby p.Name, e.Name
+            //    select new 
+            //    {
+            //        Project = p.Name,
+            //        Employee = e.Name
+            //    };
+
+            // extension Method
+            var projList = projects
+                .SelectMany(p => p.Employees
+                    .Select(e => new { Project = p.Name, Employee = e.Name }))
+                .OrderBy(p => p.Project)
+                .ThenBy(p => p.Employee);
 
 
             Console.WriteLine("---------- \r\nListe der Projekte und der beteiligten Mitarbeiter");
-            //projList.ForEach(p => Console.WriteLine("Projekt: {0} Mitarbeiter: {1}", p.Project, p.Employee));
+            projList.ForEach(p => Console.WriteLine("Projekt: {0} Mitarbeiter: {1}", p.Project, p.Employee));
 
 
             // ------------------------------------------------------------------------------------------- //

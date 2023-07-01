@@ -28,13 +28,13 @@ namespace _1._2_ExtensionMethods_Exceptions {
 
         private static void TestGetInnerstException() {
             // TODO: Bringe folgenden Code zum laufen            
-            //Exception e = TestException.GetInnerstException();
-            //Console.WriteLine(e.Message);
+            Exception e = TestException.GetInnerstException();
+            Console.WriteLine(e.Message);
         }
 
         private static void TestForEachException() {
             // TODO: Bringe folgenden Code zum laufen            
-            //TestException.ForEachException(e => Console.WriteLine(e.Message));
+            TestException.ForEachException(e => Console.WriteLine(e.Message));
         }
     }
 }
