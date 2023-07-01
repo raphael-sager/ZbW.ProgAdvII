@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadDemo", "1_ThreadDemo\1_ThreadDemo.csproj", "{95E47760-68BA-43E0-A55D-1F67F783F660}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_ThreadVolatileDemo", "2_ThreadVolatileDemo\2_ThreadVolatileDemo.csproj", "{43919372-5348-4C5B-87E3-D3B4086081AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95E47760-68BA-43E0-A55D-1F67F783F660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E47760-68BA-43E0-A55D-1F67F783F660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E47760-68BA-43E0-A55D-1F67F783F660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E47760-68BA-43E0-A55D-1F67F783F660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43919372-5348-4C5B-87E3-D3B4086081AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43919372-5348-4C5B-87E3-D3B4086081AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43919372-5348-4C5B-87E3-D3B4086081AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43919372-5348-4C5B-87E3-D3B4086081AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8E1E635-7F56-4E85-970C-E5320D5D0533}
+	EndGlobalSection
+EndGlobal

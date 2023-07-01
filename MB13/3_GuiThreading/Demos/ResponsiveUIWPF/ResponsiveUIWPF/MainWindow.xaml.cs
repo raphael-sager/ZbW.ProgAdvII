@@ -25,27 +25,37 @@ namespace ResponsiveUIWPF {
         }
 
 
-
-
-
-
-
-
-
-
-        //private async void startCalculcationButton_Click(object sender, RoutedEventArgs e) {
-        //    int number;
-        //    if (int.TryParse(this.numberTextBox.Text, out number)) {
-        //        this.calculationResultLabel.Content = "(computing)";
-        //        var result = await Task<int>.Factory.StartNew(() => this.LongCalculation(number));
-        //        this.calculationResultLabel.Content = result.ToString();
-        //    }
-        //}
-
         private int LongCalculation(int number) {
             var sleep = number * 1000;
             Thread.Sleep(sleep);
             return sleep;
         }
+
+
+
+
+
+
+        //private int result;
+        //private int Result {
+        //    get {
+        //        return this.result;
+        //    }
+        //    set {
+        //        // Zuweisung erfolgt wieder im Main-Thread.
+        //        this.result = value;
+        //    }
+        //}
+
+        //private async void startCalculcationButton_Click(object sender, RoutedEventArgs e) {
+        //    int number;
+        //    if (int.TryParse(this.numberTextBox.Text, out number)) {
+        //        this.calculationResultLabel.Content = "(computing)";
+        //        this.Result = await Task<int>.Factory.StartNew(() => this.LongCalculation(number));
+        //        this.calculationResultLabel.Content = result.ToString();
+        //    }
+        //}
+
+
     }
 }
