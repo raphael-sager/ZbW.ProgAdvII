@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LongRunningSample {
     /// <summary>
@@ -27,15 +15,38 @@ namespace LongRunningSample {
             this.Do();
         }
 
-        private void Do() {
-            var res = this.LongRunningOperation();
-            this.label.Content = res;
+        private async void Do() {
+            //var t = new Thread(() => this.LongRunningOperation());
+            //t.Start();
+
+            //var t = new Task<string>(() => this.LongRunningOperation());
+            //t.Start();
+            //t.ContinueWith(ta =>
+            //{
+            //    this.Dispatcher.Invoke(() => 
+            //    {
+            //        this.label.Content = ta.Result;
+            //    });
+            //});
+
+            //var res = this.LongRunningOperation();
+            //this.label.Content = res;
+
+            var t = Task.Run((this.LongRunningOperation));
+            var result = await t; // generates a second task
+            this.label.Content = result;
+
         }
 
         private string LongRunningOperation() {
-            var cnt = 0;
-            while (cnt < 10) {
-                this.label.Content = $"Process {cnt}/10";
+            var cnt = 1;
+            while (cnt <= 10)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    this.label.Content = $"Process {cnt}/10";
+                });
+
                 Thread.Sleep(1000);
                 cnt++;
             }
