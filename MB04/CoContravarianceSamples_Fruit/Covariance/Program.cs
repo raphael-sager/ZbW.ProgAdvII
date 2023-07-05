@@ -35,8 +35,6 @@ void FirstSampleWithList() {
 }
 
 void FirstSample() {
-    Console.WriteLine("Hello, World!");
-
     BagOfFruits fruits = new BagOfApples();
     fruits.Add(new Apple());
     fruits.Add(new Banana());
@@ -47,15 +45,14 @@ void FirstSample() {
     BagOfApples apples = (BagOfApples)fruits;
     Console.WriteLine(apples.Get(0));
     Console.WriteLine(apples.Get(1));
-
 }
 
-decimal SumWeights(IEnumerable<Fruit> fruits) {
+decimal SumWeights(List<Fruit> fruits) {
     var ret = 0m;
     foreach (var fruit in fruits) {
         ret += fruit.Weight;
     }
-    //fruits.Ad
+
     //fruits.Add(new Banana() {Weight = 450});
 
     return ret;
