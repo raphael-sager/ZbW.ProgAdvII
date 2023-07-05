@@ -117,14 +117,14 @@ namespace _1._3_QueryExpressions {
             // Sortiert nach Departmentname 
 
             //query Syntax
-            //var empQuery = from d in departments
-            //               join e in employees on d.Id equals e.DepId
-            //               orderby d.Name
-            //               select new
-            //               {
-            //                   EmployeeName = e.Name,
-            //                   DepartmentName = d.Name
-            //               };
+            var empQueryTwo = from d in departments
+                           join e in employees on d.Id equals e.DepId
+                           orderby d.Name
+                           select new
+                           {
+                               EmployeeName = e.Name,
+                               DepartmentName = d.Name
+                           };
 
 
             // extension Method
@@ -153,16 +153,16 @@ namespace _1._3_QueryExpressions {
 
 
             // query Syntax
-            //var maxDeptSalary = from d in departments
-            //        join e in employees on d.Id equals e.DepId
-            //        group e by d.Name into g
-            //        let maxSalary = g.Max(em => em.Salary)
-            //        orderby maxSalary descending 
-            //            select new
-            //            {
-            //                DepartmentName = g.Key,
-            //                MaxSalary = maxSalary
-            //            };
+            var maxDeptSalaryTwo = from d in departments
+                                join e in employees on d.Id equals e.DepId
+                                group e by d.Name into g
+                                let maxSalary = g.Max(em => em.Salary)
+                                orderby maxSalary descending
+                                select new
+                                {
+                                    DepartmentName = g.Key,
+                                    MaxSalary = maxSalary
+                                };
 
             // extension Method
             var maxDeptSalary = departments
