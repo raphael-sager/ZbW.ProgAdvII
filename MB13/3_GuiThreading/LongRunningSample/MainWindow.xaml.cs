@@ -25,7 +25,7 @@ namespace LongRunningSample {
             //{
             //    this.Dispatcher.Invoke(() => 
             //    {
-            //        this.label.Content = ta.Result;
+            //        this.label.Content = ta.Result; // REsultat in UI Thread schreiben
             //    });
             //});
 
