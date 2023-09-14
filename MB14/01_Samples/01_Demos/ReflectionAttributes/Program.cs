@@ -17,7 +17,7 @@ namespace ReflectionAttributes {
 
             var p1 = Activator.CreateInstance(type, "Raphael");
 
-            var fieldInfo = type.GetField("name", BindingFlags.NonPublic |BindingFlags.Instance);
+            var fieldInfo = type.GetField("name", BindingFlags.NonPublic | BindingFlags.Instance);
 
             var name = fieldInfo.GetValue(p1);
 
@@ -27,7 +27,7 @@ namespace ReflectionAttributes {
 
             dynamic dynamicTest = p2;
 
-            dynamicTest.SayHello();
+            dynamicTest.SayHello(); // late binding
 
 
             var sayHelloMethod = type.GetMethod("SayHello");

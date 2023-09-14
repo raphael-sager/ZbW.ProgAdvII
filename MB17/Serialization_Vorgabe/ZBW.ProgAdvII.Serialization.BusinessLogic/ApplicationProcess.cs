@@ -13,8 +13,8 @@ namespace ZBW.ProgAdvII.Serialization.BusinessLogic
         private readonly IEnumerable<IExercise> _exercises = new List<IExercise>()
         {
             new Exercise1(),
-            new Exercise2(),
-            new Exercise3()
+            //new Exercise2(),
+            //new Exercise3()
         };
 
         public void Run()

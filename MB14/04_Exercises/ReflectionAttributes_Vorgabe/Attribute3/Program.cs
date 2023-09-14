@@ -1,17 +1,21 @@
-﻿using System;
+﻿#define tracing
+using System;
 using System.Diagnostics;
 
 namespace Attribute3 {
     class Trace {
 
+        [Conditional("tracing")]
         public static void WriteLine(string s) {
             Console.WriteLine(s);
         }
 
+        [Conditional("tracing")]
         public static void WriteLine() {
             Console.WriteLine();
         }
 
+        [Conditional("tracing")]
         public static void Write(string s) {
             Console.Write(s);
         }
@@ -62,6 +66,8 @@ namespace Attribute3 {
                 stack.Push(stack.Pop() + stack.Pop());
             }
             Trace.WriteLine("result = " + stack.Pop());
+
+            Console.ReadKey();
         }
     }
 }
